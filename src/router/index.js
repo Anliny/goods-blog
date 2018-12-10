@@ -10,6 +10,14 @@ export default new Router({
       path: '/',
       name: 'container',
       component: BContainer
+    },{
+      path:'/share',
+      name:'share',
+      component:() => import('@/components/page/Share')
+    },{
+      path:'/gbook',
+      name:'gbook',
+      component:() => import('@/components/page/Gbook')
     }
   ]
 })

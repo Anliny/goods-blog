@@ -3,11 +3,11 @@
         <nav><div class="logo"><a href="/">代丰个人博客</a></div>
             <h2 id="mnavh"><span class="navicon"></span></h2>
             <ul id="starlist">
-              <li><a href="index.html">网站首页</a></li>
-              <li><a href="share.html">我的相册</a></li>
+              <li><router-link to='/'>网站首页</router-link></li>
+              <li><router-link to="share">我的相册</router-link></li>
               <li><a href="list.html">我的日记</a></li>
               <li><a href="about.html">关于我</a></li>
-              <li><a href="gbook.html">留言</a></li>
+              <li><router-link to="gbook">留言</router-link></li>
               <li><a href="info.html">内容页</a></li>
               <li><a href="infopic.html">内容页</a></li>
             </ul>
@@ -21,13 +21,7 @@ export default {
     return {
 
     }
-  },
-  /* vue 组件 */ 
-  components: {},
-  /* 计算属性 */ 
-  computed: {},
-  /* 事件处理器 */ 
-  methods: {},
+  }
 }
 </script>
 
