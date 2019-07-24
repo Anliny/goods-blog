@@ -1,27 +1,37 @@
 <template>
-		<header class="header-navigation" id="header">
-        <nav><div class="logo"><a href="/">代丰个人博客</a></div>
-            <h2 id="mnavh"><span class="navicon"></span></h2>
+    <header class="header-navigation" id="header">
+        <nav>
+            <div class="logo">
+                <a href="/">代丰个人博客</a>
+            </div>
+            <h2 id="mnavh">
+                <span class="navicon"></span>
+            </h2>
             <ul id="starlist">
-              <li><router-link to='/'>网站首页</router-link></li>
-              <li><router-link to="share">我的相册</router-link></li>
-              <li><a href="list.html">我的日记</a></li>
-              <li><a href="about.html">关于我</a></li>
-              <li><router-link to="gbook">留言</router-link></li>
-              <li><a href="info.html">内容页</a></li>
-              <li><a href="infopic.html">内容页</a></li>
+                <li v-for="item,index in menu" :key="index">
+                    <router-link to="/">{{item.courseName}}</router-link>
+                </li>
             </ul>
         </nav>
-      </header>
+    </header>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 export default {
-  data() {
-    return {
-
+    data() {
+        return {
+            menu: []
+        }
+    },
+    created() {
+        this.$http.get('/common/blogs').then(res => {
+            console.log(res)
+            if (res.status == 200) {
+                console.log(res.data.message.blogs)
+                this.menu = res.data.message.blogs
+            }
+        })
     }
-  }
 }
 </script>
 

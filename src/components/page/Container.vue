@@ -76,16 +76,10 @@ import indexList from '@/components/page/index-list.vue'
 // import indexList from './index-list.vue'
 export default {
   name:'container',
-   /* vue 组件 */ 
   components: {indexList},
   data() {
     return {}
-  },
-
-  /* 计算属性 */ 
-  computed: {},
-  /* 事件处理器 */ 
-  methods: {},
+  }
 }
 </script>
 
