@@ -1,7 +1,7 @@
 <!-- 首页列表 -->
 <template>
     <main class="r_box">
-        <li v-for="(item) in dataList" :key="item._id">
+        <li v-for="(item) in dataList" :key="item._id" @click="handleArticle(item._id)">
             <i>
                 <a href="/">
                     <img :src="item.img">
@@ -19,83 +19,21 @@
 export default {
     data() {
         return {
-            dataList: [
-                {
-                    img: require('@/assets/images/1.jpg'),
-                    title: '你是什么人便会遇上什么人',
-                    content: '有时就为了一句狠话，像心头一口毒钉，永远麻痺着亲密感情交流。恶言，真要慎出，平日多誠心爱语，乃最简易之佈施。'
-                },
-                {
-                    img: require('@/assets/images/2.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/3.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/4.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/5.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/6.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/7.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/8.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/9.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/10.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                },
-                {
-                    img: require('@/assets/images/11.jpg'),
-                    title: '爱情没有永远，地老天荒也走不完',
-                    content:
-                        '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？'
-                }
-            ]
+            dataList: []
         }
     },
     created() {
         this.$http.get('/common').then(res => {
             if (res.status == 200) {
-                this.dataList = res.data
+                this.dataList = res.data.articles
             }
         })
     },
-    methods: {}
+    methods: {
+        handleArticle(id) {
+            this.$router.push({ path: `/article`, query: { id: id } })
+        }
+    }
 }
 </script>
 <style scoped>
