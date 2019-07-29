@@ -2,7 +2,7 @@
     <header class="header-navigation" id="header">
         <nav>
             <div class="logo">
-                <a href="/">代丰个人博客</a>
+                <a href="/">XXX个人博客</a>
             </div>
             <h2 id="mnavh">
                 <span class="navicon"></span>
