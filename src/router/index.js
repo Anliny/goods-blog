@@ -34,6 +34,10 @@ export default new Router({
             path: '/gbook',
             name: 'gbook',
             component: () => import('@/components/page/Gbook')
+        }, {
+            path: '/register',
+            name: 'register',
+            component: () => import('@/components/page/register')
         }
     ]
 })
