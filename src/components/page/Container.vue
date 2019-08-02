@@ -131,8 +131,6 @@
                     </ul>
                 </div>
             </aside>
-            <!-- 首页列表 -->
-            <!-- <index-list /> -->
             <router-view/>
         </article>
         <a href="#" class="cd-top">Top</a>

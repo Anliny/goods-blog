@@ -15,7 +15,7 @@
 
             <div v-if="username" style="float:right;cursor: pointer;">
                 <span @click="handleLogin">你好！{{username}}</span>,
-                <router-link to="/">个人中心</router-link>&nbsp;&nbsp;&nbsp;
+                <router-link to="/personal">个人中心</router-link>&nbsp;&nbsp;&nbsp;
                 <span @click="handleLogout">退出</span>
             </div>
             <div v-else style="float:right;cursor: pointer;">
