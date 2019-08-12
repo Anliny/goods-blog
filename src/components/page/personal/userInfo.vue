@@ -58,12 +58,11 @@ export default {
         id: String
     },
     created() {
-        console.log(this.id)
         this.getArticle()
     },
     methods: {
         getArticle() {
-            this.$http.get('/common/article', { params: { id: this.id } }).then(res => {
+            this.$http.get('/api/updateUserInfo', { params: { id: this.id } }).then(res => {
                 if (res.status == 200) {
                     this.articleInfo = res.data
                     console.log(this.articleInfo)

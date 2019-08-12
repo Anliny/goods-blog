@@ -1,13 +1,16 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
 import iView from 'iview';
 // import 'iview/dist/styles/iview.css';
-import axios from 'axios' // 1、在这里引入axios
-Vue.prototype.$http = axios;   // 2、在vue中使用axios
+import Axios from 'axios' // 1、在这里引入axios
+import store from './store/index'
+import $http from './utils/index'
+Axios.defaults.headers.common['token'] = store.state.token;
+Vue.prototype.$http = $http;   // 2、在vue中使用axios
 Vue.config.productionTip = false
+
 
 Vue.use(iView, {
     transfer: true,
@@ -22,5 +25,6 @@ new Vue({
     el: '#app',
     router,
     components: { App },
-    template: '<App/>'
+    template: '<App/>',
+    store
 })
