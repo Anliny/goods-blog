@@ -104,7 +104,7 @@ export default {
                             window.localStorage.setItem('userInfo', JSON.stringify(res.data))
                             window.localStorage.setItem('userName', res.data.username)
                             this.username = res.data.username
-                            this.$store.commit('token', window.localStorage.getItem('token'))
+                            this.$store.commit('token', res.data.token)
                             this.$Message.success('登录成功！')
                             this.isShowModal = false
                             console.log(this.$store)
@@ -124,6 +124,7 @@ export default {
             window.localStorage.clear()
             this.username = ''
             this.$Message.success('退出成功！')
+            this.$router.push('/')
         }
     }
 }

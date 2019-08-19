@@ -5,7 +5,7 @@ import BContainer from '@/components/page/Container'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/',
@@ -43,6 +43,9 @@ export default new Router({
             name: 'personal',
             component: () => import('@/components/page/personal/personal'),
             redirect: '/personal/userInfo',
+            meta: {
+                requiresAuth: true      // 要求验证的页面,在此情况下其子页面也会被验证.
+            },
             children: [
                 {
                     path: '/personal/userInfo',
@@ -81,3 +84,22 @@ export default new Router({
         }
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {     // 哪些需要验证
+        if (!localStorage.getItem("token")) {                      // token存在条件   
+            next({
+                path: '/',                                               // 验证失败要跳转的页面
+                query: {
+                    redirect: to.fullPath                                 // 要传的参数
+                }
+            })
+        } else {
+            next()
+        }
+    } else {
+        next()                                                       // 确保一定要调用 next()
+    }
+})
+
+export default router
