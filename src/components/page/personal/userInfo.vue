@@ -5,7 +5,7 @@
             <div class="newsview">
                 <h3 class="news_title">个人资料</h3>
                 <div class="avatar">
-                    <img :src="userInfo.avatar">
+                    <img :src="formValidate.avatar">
                     <p>
                         <a href="/">修改头像</a>
                     </p>
@@ -95,7 +95,7 @@
 
 <script>
 require('@/../static/css/info.css')
-import { getUserInfo } from '@/api/user.js'
+import { getUserInfo, putUserInfo } from '@/api/user.js'
 import { formateDateFn } from '@/utils/tools.js'
 export default {
     data() {
@@ -112,7 +112,8 @@ export default {
                 introduce: '',
                 avatar: '',
                 email: ''
-            }
+            },
+            ruleValidate: {}
         }
     },
     props: {
@@ -131,6 +132,17 @@ export default {
         // 格式化时间
         formateDateFn(data) {
             return formateDateFn(data)
+        },
+        // 取消编辑
+        handleReset() {
+            this.isUpdate = true
+        },
+        // 提交编辑
+        handleSubmit() {
+            putUserInfo(this.formValidate).then(res => {
+                this.$Message.success('保存成功')
+                this.isUpdate = true
+            })
         }
     }
 }
@@ -149,11 +161,6 @@ export default {
     p {
         text-align: center;
         height: 30px;
-        // cursor: pointer;
-        // color: #dedede;
-        // &:hover {
-        //     color: #000;
-        // }
     }
 }
 .userList {

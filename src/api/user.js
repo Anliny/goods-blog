@@ -12,6 +12,7 @@ export const login = ({ userName, password }) => {
     })
 }
 
+//  获取用户信息
 export const getUserInfo = (token) => {
     return axios.request({
         url: '/api/getUserInfo',
@@ -21,6 +22,15 @@ export const getUserInfo = (token) => {
         method: 'get'
     })
 }
+//  修改用户信息
+export const putUserInfo = (data) => {
+    return axios.request({
+        url: '/api/updateUserInfo',
+        data: data,
+        method: 'put'
+    })
+}
+
 
 export const logout = (token) => {
     return axios.request({

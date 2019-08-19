@@ -104,7 +104,7 @@ export default {
                             window.localStorage.setItem('userInfo', JSON.stringify(res.data))
                             window.localStorage.setItem('userName', res.data.username)
                             this.username = res.data.username
-                            this.$store.commit('token', res.data.token)
+                            this.$store.commit('set_token', res.data.token)
                             this.$Message.success('登录成功！')
                             this.isShowModal = false
                             console.log(this.$store)
