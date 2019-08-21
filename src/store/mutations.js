@@ -5,6 +5,9 @@ const mutations = {
     del_token (state) {
         state.token = ''
         localStorage.clear();
+    },
+    setUserInfo (state, userInfo) {
+        state.userInfo = userInfo
     }
 }
 export default mutations

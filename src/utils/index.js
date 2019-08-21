@@ -21,12 +21,13 @@ Axios.interceptors.request.use(config => {
 // http response 拦截器
 Axios.interceptors.response.use(
     response => {
-        if (response.data.isFlag == '-1') {
-            console.log(response.data)
 
-            localStorage.clear();
-            router.replace({ path: '/' })
-        }
+        // console.log(response.data)
+        // if (response.data.isFlag == '-1') {
+
+        //     localStorage.clear();
+        //     router.replace({ path: '/' })
+        // }
         return response;
     },
     error => {

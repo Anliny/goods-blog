@@ -125,7 +125,6 @@ export default {
     methods: {
         getArticle() {
             getUserInfo().then(res => {
-                console.log(res.data.docs)
                 this.formValidate = res.data.docs
             })
         },
