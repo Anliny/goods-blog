@@ -17,3 +17,12 @@ export const apiPostAddArticle = (data) => {
         method: 'post'
     })
 }
+
+// 文章详情
+export const apiGetArticleInfo = (path) => {
+    return axios.request({
+        url: '/article/getArticleInfo',
+        params: path,
+        method: 'get'
+    })
+}

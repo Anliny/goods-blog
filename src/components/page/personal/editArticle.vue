@@ -20,9 +20,9 @@
                             <Select v-model="formValidate.flag" multiple>
                                 <Option
                                     v-for="item in flagArray"
-                                    :value="item.id"
-                                    :key="item.id"
-                                >{{ item.name }}</Option>
+                                    :value="item._id"
+                                    :key="item._id"
+                                >{{ item.labelName }}</Option>
                             </Select>
                         </FormItem>
                     </div>
@@ -72,6 +72,7 @@ import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
 import { apiGetBlogList, apiPostAddArticle } from '@/api/article.js'
+import { apiGetFlagList } from '@/api/flag.js'
 
 export default {
     components: {
@@ -88,7 +89,7 @@ export default {
                 articleContent: ''
             },
             blogList: [],
-            flagArray: [{ id: 111111, name: '活力' }, { id: 222222, name: '日记' }, { id: 333333, name: '情感' }],
+            flagArray: [],
             editorOption: {},
             ruleValidate: {
                 articleName: [{ required: true, message: '请输入文章标题', trigger: 'blur' }],
@@ -105,6 +106,7 @@ export default {
     created() {
         this.getArticle()
         this.getBlogList()
+        this.getFlagList()
     },
     methods: {
         getArticle() {
@@ -121,6 +123,13 @@ export default {
                 this.blogList = res.data.blogs
             })
         },
+        //  获取文章标签
+        getFlagList() {
+            apiGetFlagList().then(res => {
+                this.flagArray = res.data
+            })
+        },
+
         onEditorBlur(ev) {},
         onEditorFocus(ev) {},
         onEditorReady(ev) {},

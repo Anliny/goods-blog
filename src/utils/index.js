@@ -21,17 +21,14 @@ Axios.interceptors.request.use(config => {
 // http response 拦截器
 Axios.interceptors.response.use(
     response => {
+        if (response.data.isFlag == '-1') {
 
-        // console.log(response.data)
-        // if (response.data.isFlag == '-1') {
-
-        //     localStorage.clear();
-        //     router.replace({ path: '/' })
-        // }
+            localStorage.clear();
+            router.replace({ path: '/' })
+        }
         return response;
     },
     error => {
-        console.log(error.response)
         if (error.response) {
             switch (error.response.status) {
                 case 401:
