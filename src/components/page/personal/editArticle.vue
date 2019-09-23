@@ -104,19 +104,10 @@ export default {
         id: String
     },
     created() {
-        this.getArticle()
         this.getBlogList()
         this.getFlagList()
     },
     methods: {
-        getArticle() {
-            this.$http.get('/common/article', { params: { id: this.id } }).then(res => {
-                if (res.status == 200) {
-                    this.articleInfo = res.data
-                    console.log(this.articleInfo)
-                }
-            })
-        },
         // 获取文章分类
         getBlogList() {
             apiGetBlogList().then(res => {
@@ -139,10 +130,12 @@ export default {
                 if (valid) {
                     let data = {
                         ...this.formValidate,
+                        flag: JSON.stringify(this.formValidate.flag),
                         articleAuthor: JSON.parse(this.$store.state.userInfo).username
                     }
                     apiPostAddArticle(data).then(res => {
-                        console.log(res)
+                        this.$Message.success('保存成功！')
+                        this.$router.push({ path: '/personal/myBlog' })
                     })
                 }
             })

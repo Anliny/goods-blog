@@ -71,7 +71,14 @@ const router = new Router({
                     props: route => ({
                         id: route.query.id
                     }),
-                    component: () => import('@/components/page/article.vue')
+                    component: () => import('@/components/page/personal/personalArtileList.vue')
+                }, {
+                    path: '/personal/myArtileInfo',
+                    name: "myArtileInfo",
+                    props: route => ({
+                        id: route.query.id
+                    }),
+                    component: () => import('@/components/page/personal/personalArticleInfo.vue')
                 }, {
                     path: '/personal/blogging',
                     name: "blogging",
