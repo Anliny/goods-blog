@@ -71,7 +71,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
-import { apiGetBlogList, apiPostAddArticle } from '@/api/article.js'
+import { apiGetBlogList, apiPostAddArticle, apiGetArticleInfo, apiGetArticleInfoUpdate, apiPostUpdate } from '@/api/article.js'
 import { apiGetFlagList } from '@/api/flag.js'
 
 export default {
@@ -106,6 +106,9 @@ export default {
     created() {
         this.getBlogList()
         this.getFlagList()
+        if (this.id) {
+            this.getArtileInfo()
+        }
     },
     methods: {
         // 获取文章分类
@@ -121,6 +124,13 @@ export default {
             })
         },
 
+        // 获取文章
+        getArtileInfo() {
+            apiGetArticleInfoUpdate({ id: this.id }).then(res => {
+                this.formValidate = res.data
+            })
+        },
+
         onEditorBlur(ev) {},
         onEditorFocus(ev) {},
         onEditorReady(ev) {},
@@ -133,10 +143,17 @@ export default {
                         flag: JSON.stringify(this.formValidate.flag),
                         articleAuthor: JSON.parse(this.$store.state.userInfo).username
                     }
-                    apiPostAddArticle(data).then(res => {
-                        this.$Message.success('保存成功！')
-                        this.$router.push({ path: '/personal/myBlog' })
-                    })
+                    if (this.id) {
+                        apiPostUpdate(data).then(res => {
+                            this.$Message.success('保存成功！')
+                            this.$router.push({ path: '/personal/myBlog' })
+                        })
+                    } else {
+                        apiPostAddArticle(data).then(res => {
+                            this.$Message.success('保存成功！')
+                            this.$router.push({ path: '/personal/myBlog' })
+                        })
+                    }
                 }
             })
         }

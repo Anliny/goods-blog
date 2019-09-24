@@ -28,7 +28,7 @@
                     <strong>简介</strong>
                     {{articleInfo.articleDescribe}}
                 </div>
-                <div class="news_con">{{articleInfo.articleContent}}</div>
+                <div class="news_con" v-html="articleInfo.articleContent"></div>
             </div>
         </div>
     </main>
@@ -48,7 +48,6 @@ export default {
         id: String
     },
     created() {
-        console.log(this.id)
         this.getArticle()
     },
     methods: {

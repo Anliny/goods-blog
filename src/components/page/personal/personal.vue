@@ -53,7 +53,6 @@ export default {
             this.$refs.formValidate.validate(valid => {
                 if (valid) {
                     this.$http.post('/api/user/register', this.formValidate).then(res => {
-                        console.log(res.data)
                         if (res.data.code == '0') {
                             this.$Message.success('注册成功！')
                             this.$router.back(-1)

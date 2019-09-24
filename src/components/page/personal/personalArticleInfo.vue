@@ -37,10 +37,11 @@
                     <strong>简介</strong>
                     {{articleInfo.articleDescribe}}
                 </div>
-                <div class="news_con">{{articleInfo.articleContent}}</div>
+                <div class="news_con" v-html="articleInfo.articleContent"></div>
                 <div style="display: flex;justify-content: center;">
                     <Button style="float:right">预 览</Button>&nbsp;&nbsp;
-                    <Button type="primary" @click="handleSubmit">保 存</Button>
+                    <Button type="primary" @click="handleSubmit">保 存</Button>&nbsp;&nbsp;
+                    <Button type="primary" @click="handleEdit">编 辑</Button>
                 </div>
             </div>
         </div>
@@ -50,6 +51,7 @@
 <script>
 require('@/../static/css/info.css')
 import { userArtileInfo } from './mock.js'
+import { apiGetArticleInfo, apiPutArtileRelease } from '@/api/article.js'
 import { formateDateFn } from '@/utils/tools.js'
 export default {
     data() {
@@ -76,13 +78,29 @@ export default {
     },
     created() {
         console.log(this.id)
+        this.getArtileInfo()
     },
     methods: {
+        getArtileInfo() {
+            apiGetArticleInfo({ id: this.id }).then(res => {
+                console.log(res)
+                this.articleInfo = res.data
+            })
+        },
         formateDateFn(time) {
             return formateDateFn(time)
         },
         handleSubmit() {
-            console.log(this.articleInfo)
+            let data = {
+                id: this.articleInfo._id,
+                release: this.articleInfo.release
+            }
+            apiPutArtileRelease(data).then(res => {
+                this.$Message.success(res.data.message)
+            })
+        },
+        handleEdit() {
+            this.$router.push({ path: `/personal/blogging`, query: { id: this.id } })
         }
     }
 }

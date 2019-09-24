@@ -22,14 +22,29 @@
 
 <script>
 import { userArtileList } from './mock.js'
+import { apiGetArtileList } from '@/api/article.js'
+
 export default {
     data() {
         return {
-            userArtileList: userArtileList
+            userArtileList: userArtileList,
+            username: JSON.parse(this.$store.state.userInfo).username
         }
     },
-    created() {},
+    created() {
+        this.getUserArtileList()
+    },
     methods: {
+        // 获取当前角色 下的文章列表
+        getUserArtileList() {
+            let username = this.username
+            apiGetArtileList({ username: username }).then(res => {
+                console.log(res)
+                this.userArtileList = res.data.articles
+            })
+        },
+
+        // 跳转到文章详情
         handleArticle(id) {
             this.$router.push({ path: `/personal/myArtileInfo`, query: { id: id } })
         }
