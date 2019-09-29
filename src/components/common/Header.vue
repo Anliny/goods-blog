@@ -9,7 +9,7 @@
             </h2>
             <ul id="starlist" style="float:left;">
                 <li v-for="item,index in menu" :key="index">
-                    <router-link to="/">{{item.courseName}}</router-link>
+                    <a href="javascript:;" @click="handleMenu(item._id)">{{item.courseName}}</a>
                 </li>
             </ul>
 
@@ -41,7 +41,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import { apiGetBlogList } from '@/api/blog.js'
+
 export default {
     data() {
         //  const vm = this;
@@ -82,15 +84,19 @@ export default {
         }
     },
     created() {
-        this.$http.get('/common/blogs').then(res => {
-            console.log(res)
-            if (res.status == 200) {
-                console.log(res.data.message.blogs)
-                this.menu = res.data.message.blogs
-            }
-        })
+        this.getBlogList()
     },
     methods: {
+        // 获取类目列表
+        getBlogList() {
+            apiGetBlogList().then(res => {
+                this.menu = res.data.blogs
+            })
+        },
+        // 点击菜单
+        handleMenu(blogId) {
+            console.log(blogId)
+        },
         handleLogin() {
             this.isShowModal = true
         },

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-// 获取文章类型列表
+// 获取分类列表
 export const apiGetBlogList = () => {
     return axios.request({
         url: "/common/blogs",
@@ -64,13 +64,4 @@ export const apiPostUpdate = (data) => {
     })
 }
 
-
-// 根据文章分类查询文章列表
-export const apiPostBlogArticleList = (data) => {
-    return axios.request({
-        url: '/article/getBlogArticleList',
-        data: data,
-        method: 'post'
-    })
-}
 
