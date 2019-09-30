@@ -15,7 +15,10 @@ const router = new Router({
             children: [
                 {
                     path: '/',
-                    name: "list",
+                    name: "indexList",
+                    props: route => ({
+                        id: route.params.id
+                    }),
                     component: () => import('@/components/page/index-list.vue')
                 }, {
                     path: '/article',

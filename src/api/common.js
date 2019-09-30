@@ -49,7 +49,14 @@ export const getTreeSelectData = () => {
         method: 'get'
     })
 }
-
+// 获取文章列表
+export const apiPostBlogArticleList = (data) => {
+    return axios.request({
+        url: '/common',
+        data: data,
+        method: 'post'
+    })
+}
 // 文章详情
 export const apiGetArticleInfo = (path) => {
     return axios.request({

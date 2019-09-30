@@ -1,12 +1,10 @@
-import { apiGetBlogList } from '@/api/blog.js'
+import { apiPostBlogArticleList } from '@/api/common.js'
 const actions = {
-    getArticleList (blogId) {
-        let data = {
-            id: blogId
-        }
-        apiGetBlogList(data).then(res => {
-            console.log(res);
+    handleMenu (context, payload) {
+        apiPostBlogArticleList({ id: payload }).then(res => {
+            context.commit('blogMenuArticle', res.data);
         })
     }
 }
-export default actions
+
+export default actions;
